@@ -4,3 +4,5 @@ export type Product = {
   price: string;
   orderId: number;
 };
+
+export type ProductWithoutOrderID = Omit<Product, 'orderId'>; 
