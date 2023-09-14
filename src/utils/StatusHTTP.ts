@@ -5,7 +5,7 @@ export default function mapStatusHTTP(status: string): number {
     NOT_FOUND: 404,
     BAD_REQUEST: 400,
     CREATED: 201,
-    SUCCESSFULL: 200,
+    SUCCESSFUL: 200,
   };
   return statusHTTP[status] ?? 500;
 }
