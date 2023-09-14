@@ -14,7 +14,7 @@ describe('GET /products', function () {
   it('Retorna status 200 e lista de produtos', async function() {
     const dataFromDB = listProductMock.allProducts.map((product) => ProductModel.build(product));
     sinon.stub(ProductModel, 'findAll').resolves(dataFromDB);
-    const response = await chai.request(app).get('/products');
+    const response = await chai.request(app).get('/products').send();
 
     expect(response.status).to.be.equal(200);
     expect(response.body).to.deep.equal(listProductMock.serviceReturn.data); 
