@@ -1,4 +1,6 @@
-type ErrorResponses = 'INVALID_DATA' | 'UNAUTHORIZED' | 'NOT_FOUND' | 'BAD_REQUEST';
+type ErrorResponses = 'INVALID_DATA' | 'INVALID_DATA_TYPES' |
+'UNAUTHORIZED' | 'NOT_FOUND' | 'BAD_REQUEST';
+
 type SuccessResponses = 'SUCCESSFUL' | 'CREATED';
 
 export type ServiceResponseError = {
