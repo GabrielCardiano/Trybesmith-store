@@ -1,6 +1,7 @@
-import OrderModel from '../database/models/order.model';
+import OrderModel, { OrderInputtableTypes } from '../database/models/order.model';
 import ProductModel from '../database/models/product.model';
-import { Order } from '../types/Order';
+import validateOrder from '../middlewares/validateOrder';
+import {  NewOrder, rder } from '../types/Order';
 import { ServiceResponse } from '../types/ServiceResponse';
 
 async function listOrders(): Promise<ServiceResponse<Order[]>> {
@@ -14,6 +15,18 @@ async function listOrders(): Promise<ServiceResponse<Order[]>> {
     return orderJSON;
   });
   return { status: 'SUCCESSFUL', data };
+}
+
+async function createOrder(order: OrderInputtableTypes): Promise<ServiceResponse<NewOrder>> {
+  const { productIds, userId } = order;
+  const isProductIdsValid = await validateOrder.validateProductIds(productIds);
+  if (isProductIdsValid) return isProductIdsValid;
+
+  const isUserIdValid = validateOrder.validateUserId(userId);
+  if (isUserIdValid) return isUserIdValid;
+
+  const newOrder = await OrderModel.create();
+  return { status: 'CREATED', data: newOrder };
 }
 
 export default { listOrders };

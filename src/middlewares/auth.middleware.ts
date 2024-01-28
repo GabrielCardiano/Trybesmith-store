@@ -7,7 +7,7 @@ const authMiddleware: RequestHandler = (req, res, next) => {
   const { authorization } = req.headers;
 
   if (!authorization) {
-    return res.status(401).json({ message: 'Token inexistente' });
+    return res.status(401).json({ message: 'Token not found' });
   }
 
   const token = authorization.split(' ')[1];
@@ -19,7 +19,7 @@ const authMiddleware: RequestHandler = (req, res, next) => {
     jwt.verify(token, secret);
     return next();
   } catch (err) {
-    res.status(401).json({ message: 'Token não verificado' });
+    res.status(401).json({ message: 'Invalid token' });
   }
 };
 

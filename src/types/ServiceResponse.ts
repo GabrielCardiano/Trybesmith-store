@@ -1,4 +1,5 @@
-type ErrorResponses = 'INVALID_DATA' | 'UNAUTHORIZED' | 'NOT_FOUND' | 'BAD_REQUEST';
+type ErrorResponses = 'INVALID_DATA' | 'UNAUTHORIZED' | 'NOT_FOUND' | 'BAD_REQUEST'
+| 'UNPROCESSABLE_CONTENT';
 
 type SuccessResponses = 'SUCCESSFUL' | 'CREATED';
 
@@ -15,3 +16,5 @@ export type ServiceResponseSuccess<T> = {
 export type ServiceResponse<T> = ServiceResponseError | ServiceResponseSuccess<T>;
 
 export type LoginResponse = ServiceResponse<{ token: string }>;
+
+export type ValidateOrderParamsResponse = ServiceResponse<{ message: string }> | undefined;
